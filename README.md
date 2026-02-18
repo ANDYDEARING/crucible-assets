@@ -17,3 +17,5 @@ https://syntystore.com/products/polygon-apocalypse-pack
 https://syntystore.com/products/polygon-sci-fi-city
 
 https://justcreate3d.itch.io/low-poly-sci-fi-characters
+
+https://www.mixamo.com/#/?page=3&type=Character
