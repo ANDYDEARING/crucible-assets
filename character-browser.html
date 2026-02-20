@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Synty SciFi Horror - Character Browser</title>
+<title>Synty SciFi - Character Browser</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -100,6 +100,10 @@
   .tag-creature { background: #2a1a2a; color: #e879f9; }
   .tag-male { background: #1a2a3a; color: #93c5fd; }
   .tag-female { background: #2a1a2a; color: #f9a8d4; }
+  .tag-civilian { background: #1a3a2a; color: #34d399; }
+  .tag-soldier { background: #2a2a1a; color: #fbbf24; }
+  .tag-scavenger { background: #3a2a2a; color: #f97316; }
+  .tag-spacesuit { background: #1a2a3a; color: #60a5fa; }
 
   /* Main content */
   .main {
@@ -265,7 +269,11 @@
 <body>
 
 <header>
-  <h1>Polygon <span>SciFi Horror</span> - Character Browser</h1>
+  <h1>Polygon <span id="packTitle">SciFi Horror</span> - Character Browser</h1>
+  <select id="assetPackSelect" style="padding: 8px 12px; background: #1a1a2e; border: 1px solid #e94560; border-radius: 4px; color: #fff; font-size: 14px; cursor: pointer;">
+    <option value="SciFiHorror">SciFi Horror</option>
+    <option value="SciFiWorld">SciFi World</option>
+  </select>
 </header>
 
 <div class="layout">
@@ -340,11 +348,38 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
-// Base path to SciFiHorror assets (relative to where this HTML file lives)
-const ASSET_BASE = 'synty/SourceFiles/SciFiHorror/';
-
-// Character data
-const characters = [
+// Asset pack configurations
+const assetPacks = {
+  SciFiHorror: {
+    name: 'SciFi Horror',
+    basePath: 'synty/SciFiHorror/SciFiHorror/',
+    scale: 0.01,
+    cameraDistance: 1.2,
+    categories: [
+      { value: 'all', label: 'All Characters' },
+      { value: 'crew', label: 'Crew Members' },
+      { value: 'spacesuit', label: 'Space Suits' },
+      { value: 'mining', label: 'Mining Suit' },
+      { value: 'alien', label: 'Aliens' },
+      { value: 'android', label: 'Android' },
+      { value: 'creature', label: 'Creatures' },
+      { value: 'dead', label: 'Dead Variants' }
+    ],
+    palettes: [
+      { id: '01_A', label: '01-A', file: 'Textures/Alts/PolygonSciFiHorror_01_A.png', desc: 'Orange/Grey (Default)' },
+      { id: '01_B', label: '01-B', file: 'Textures/Alts/PolygonSciFiHorror_01_B.png', desc: 'Blue/Grey' },
+      { id: '01_C', label: '01-C', file: 'Textures/Alts/PolygonSciFiHorror_01_C.png', desc: 'Green/Grey' },
+      { id: '02_A', label: '02-A', file: 'Textures/Alts/PolygonSciFiHorror_02_A.png', desc: 'Alt Orange' },
+      { id: '02_B', label: '02-B', file: 'Textures/Alts/PolygonSciFiHorror_02_B.png', desc: 'Alt Blue' },
+      { id: '02_C', label: '02-C', file: 'Textures/Alts/PolygonSciFiHorror_02_C.png', desc: 'Alt Green' },
+      { id: '03_A', label: '03-A', file: 'Textures/Alts/PolygonSciFiHorror_03_A.png', desc: 'Variant 3A' },
+      { id: '03_B', label: '03-B', file: 'Textures/Alts/PolygonSciFiHorror_03_B.png', desc: 'Variant 3B' },
+      { id: '03_C', label: '03-C', file: 'Textures/Alts/PolygonSciFiHorror_03_C.png', desc: 'Variant 3C' },
+      { id: '04_A', label: '04-A', file: 'Textures/Alts/PolygonSciFiHorror_04_A.png', desc: 'Dark Variant A' },
+      { id: '04_B', label: '04-B', file: 'Textures/Alts/PolygonSciFiHorror_04_B.png', desc: 'Dark Variant B' },
+      { id: '04_C', label: '04-C', file: 'Textures/Alts/PolygonSciFiHorror_04_C.png', desc: 'Dark Variant C' }
+    ],
+    characters: [
   {
     id: 'alien_01',
     name: 'Alien',
@@ -595,23 +630,326 @@ const characters = [
     defaultHead: null,
     accessories: []
   }
-];
+    ]
+  },
+  SciFiWorld: {
+    name: 'SciFi World',
+    basePath: 'synty/SciFiWorld/',
+    scale: 0.01,
+    cameraDistance: 2.5,
+    categories: [
+      { value: 'all', label: 'All Characters' },
+      { value: 'alien', label: 'Aliens' },
+      { value: 'civilian', label: 'Civilians' },
+      { value: 'scavenger', label: 'Scavengers' },
+      { value: 'soldier', label: 'Soldiers' },
+      { value: 'spacesuit', label: 'Space Suits' }
+    ],
+    palettes: [
+      { id: '01_A', label: '01-A', file: 'Textures/Alts/PolygonScifiWorlds_Texture_01_A.png', desc: 'Default A' },
+      { id: '01_B', label: '01-B', file: 'Textures/Alts/PolygonScifiWorlds_Texture_01_B.png', desc: 'Variant B' },
+      { id: '01_C', label: '01-C', file: 'Textures/Alts/PolygonScifiWorlds_Texture_01_C.png', desc: 'Variant C' },
+      { id: '02_A', label: '02-A', file: 'Textures/Alts/PolygonScifiWorlds_Texture_02_A.png', desc: 'Alt 2A' },
+      { id: '02_B', label: '02-B', file: 'Textures/Alts/PolygonScifiWorlds_Texture_02_B.png', desc: 'Alt 2B' },
+      { id: '02_C', label: '02-C', file: 'Textures/Alts/PolygonScifiWorlds_Texture_02_C.png', desc: 'Alt 2C' },
+      { id: '03_A', label: '03-A', file: 'Textures/Alts/PolygonScifiWorlds_Texture_03_A.png', desc: 'Variant 3A' },
+      { id: '03_B', label: '03-B', file: 'Textures/Alts/PolygonScifiWorlds_Texture_03_B.png', desc: 'Variant 3B' },
+      { id: '03_C', label: '03-C', file: 'Textures/Alts/PolygonScifiWorlds_Texture_03_C.png', desc: 'Variant 3C' },
+      { id: '04_A', label: '04-A', file: 'Textures/Alts/PolygonScifiWorlds_Texture_04_A.png', desc: 'Variant 4A' },
+      { id: '04_B', label: '04-B', file: 'Textures/Alts/PolygonScifiWorlds_Texture_04_B.png', desc: 'Variant 4B' },
+      { id: '04_C', label: '04-C', file: 'Textures/Alts/PolygonScifiWorlds_Texture_04_C.png', desc: 'Variant 4C' }
+    ],
+    characters: [
+      {
+        id: 'alien_armor_01',
+        name: 'Alien Armor',
+        category: 'alien',
+        gender: null,
+        description: 'Armored alien creature with protective plating.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_AlienArmor_01',
+        meshes: ['SM_Chr_ScifiWorlds_AlienArmor_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['alien'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'alien_chef_01',
+        name: 'Alien Chef',
+        category: 'alien',
+        gender: null,
+        description: 'Alien creature with chef attire and equipment.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_AlienChef_01',
+        meshes: ['SM_Chr_ScifiWorlds_AlienChef_01', 'SM_Chr_Attach_Chef_Hat_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['alien'],
+        defaultHead: 'Chef_Hat_01',
+        accessories: ['Chef_Hat_01']
+      },
+      {
+        id: 'alien_combat_01',
+        name: 'Alien Combat',
+        category: 'alien',
+        gender: null,
+        description: 'Combat-ready alien creature.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_AlienCombat_01',
+        meshes: ['SM_Chr_ScifiWorlds_AlienCombat_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['alien'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'alien_rock_01',
+        name: 'Alien Rock',
+        category: 'alien',
+        gender: null,
+        description: 'Rock-like alien creature with heavy build.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_AlienRock_01',
+        meshes: ['SM_Chr_ScifiWorlds_AlienRock_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['alien'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'alien_spikes_01',
+        name: 'Alien Spikes',
+        category: 'alien',
+        gender: null,
+        description: 'Spiked alien creature with tail.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_AlienSpikes_01',
+        meshes: ['SM_Chr_ScifiWorlds_AlienSpikes_01', 'SM_Chr_AlienSpikes_Tail_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['alien', 'creature'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'female_01',
+        name: 'Female Civilian',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female civilian character with VR hair attachment.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Female_01',
+        meshes: ['SM_Chr_ScifiWorlds_Female_01', 'SM_Chr_Attach_VR_03_Hair_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: 'Hair_01',
+        accessories: ['VR_03_Hair_01']
+      },
+      {
+        id: 'male_01',
+        name: 'Male Civilian',
+        category: 'civilian',
+        gender: 'male',
+        description: 'Male civilian character with VR hair attachment.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Male_01',
+        meshes: ['SM_Chr_ScifiWorlds_Male_01', 'SM_Chr_Attach_VR_01_Hair_02'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['civilian', 'male'],
+        defaultHead: 'Hair_02',
+        accessories: ['VR_01_Hair_02']
+      },
+      {
+        id: 'scavenger_01',
+        name: 'Scavenger 01',
+        category: 'scavenger',
+        gender: 'male',
+        description: 'Male scavenger with hat and repair pouch.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Scavenger_01',
+        meshes: ['SM_Chr_ScifiWorlds_Scavenger_01', 'SM_Chr_Attach_Hair_Male_01', 'SM_Chr_Attach_Hat_04', 'SM_Chr_Attach_Pouch_Repair_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['scavenger', 'male'],
+        defaultHead: 'Hat_04',
+        accessories: ['Hat_04', 'Pouch_Repair_01']
+      },
+      {
+        id: 'scavenger_02',
+        name: 'Scavenger 02',
+        category: 'scavenger',
+        gender: null,
+        description: 'Second scavenger variant.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Scavenger_02',
+        meshes: ['SM_Chr_ScifiWorlds_Scavenger_02'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['scavenger'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'scavenger_03',
+        name: 'Scavenger 03',
+        category: 'scavenger',
+        gender: 'female',
+        description: 'Female scavenger with helmet.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Scavenger_03',
+        meshes: ['SM_Chr_ScifiWorlds_Scavenger_03', 'SM_Chr_Attach_Hair_Female_01', 'SM_Chr_Attach_Helmet_03'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['scavenger', 'female'],
+        defaultHead: 'Helmet_03',
+        accessories: ['Helmet_03']
+      },
+      {
+        id: 'soldier_female_01',
+        name: 'Soldier (Female)',
+        category: 'soldier',
+        gender: 'female',
+        description: 'Female soldier with helmet and pouches.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Soldier_Female_01',
+        meshes: ['SM_Chr_ScifiWorlds_Soldier_Female_01', 'SM_Chr_Attach_Hair_Female_01', 'SM_Chr_Attach_Helmet_01', 'SM_Chr_Attach_Pouch_06'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['soldier', 'female'],
+        defaultHead: 'Helmet_01',
+        accessories: ['Helmet_01', 'Pouch_06']
+      },
+      {
+        id: 'soldier_male_01',
+        name: 'Soldier Male 01',
+        category: 'soldier',
+        gender: 'male',
+        description: 'Male soldier with grenades and tactical gear.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Soldier_Male_01',
+        meshes: ['SM_Chr_ScifiWorlds_Soldier_Male_01', 'SM_Chr_Attach_Grenade_Smoke_01', 'SM_Chr_Attach_Pouch_02'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['soldier', 'male'],
+        defaultHead: null,
+        accessories: ['Grenade_Smoke_01', 'Pouch_02']
+      },
+      {
+        id: 'soldier_male_02',
+        name: 'Soldier Male 02',
+        category: 'soldier',
+        gender: 'male',
+        description: 'Male soldier variant with shoulder pads and helmet.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Soldier_Male_02',
+        meshes: ['SM_Chr_ScifiWorlds_Soldier_Male_02', 'SM_Chr_Attach_Hair_Male_01', 'SM_Chr_Attach_Helmet_01', 'SM_Chr_Attach_Shoulder_Small_L_01', 'SM_Chr_Attach_Shoulder_Small_R_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['soldier', 'male'],
+        defaultHead: 'Helmet_01',
+        accessories: ['Helmet_01', 'Shoulder_Small']
+      },
+      {
+        id: 'spacesuit_alien_female_01',
+        name: 'Space Suit Alien (Female)',
+        category: 'spacesuit',
+        gender: 'female',
+        description: 'Female alien in space suit.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_SpaceSuit_Alien_Female_01',
+        meshes: ['SM_Chr_ScifiWorlds_SpaceSuit_Alien_Female_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['spacesuit', 'alien', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'spacesuit_alien_male_01',
+        name: 'Space Suit Alien (Male)',
+        category: 'spacesuit',
+        gender: 'male',
+        description: 'Male alien in space suit.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_SpaceSuit_Alien_Male_01',
+        meshes: ['SM_Chr_ScifiWorlds_SpaceSuit_Alien_Male_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['spacesuit', 'alien', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'spacesuit_female_01',
+        name: 'Space Suit Female 01',
+        category: 'spacesuit',
+        gender: 'female',
+        description: 'Female space suit with rounded helmet.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_SpaceSuit_Female_01',
+        meshes: ['SM_Chr_ScifiWorlds_SpaceSuit_Female_01', 'SM_Chr_Attach_Helmet_Space_01', 'SM_Chr_Attach_Helmet_Space_01_Glass', 'SM_Chr_Attach_Hair_Female_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['spacesuit', 'female'],
+        defaultHead: 'Helmet_Space_01',
+        accessories: ['Helmet_Space_01']
+      },
+      {
+        id: 'spacesuit_female_02',
+        name: 'Space Suit Female 02',
+        category: 'spacesuit',
+        gender: 'female',
+        description: 'Female space suit variant with different helmet.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_SpaceSuit_Female_02',
+        meshes: ['SM_Chr_ScifiWorlds_SpaceSuit_Female_02', 'SM_Chr_Attach_Helmet_Space_02', 'SM_Chr_Attach_Helmet_Space_02_Glass', 'SM_Chr_Attach_Hair_Female_04'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['spacesuit', 'female'],
+        defaultHead: 'Helmet_Space_02',
+        accessories: ['Helmet_Space_02']
+      },
+      {
+        id: 'spacesuit_male_01',
+        name: 'Space Suit Male 01',
+        category: 'spacesuit',
+        gender: 'male',
+        description: 'Male space suit with rounded helmet.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_SpaceSuit_Male_01',
+        meshes: ['SM_Chr_ScifiWorlds_SpaceSuit_Male_01', 'SM_Chr_Attach_Helmet_Space_01', 'SM_Chr_Attach_Helmet_Space_01_Glass', 'SM_Chr_Attach_Hair_Male_01'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['spacesuit', 'male'],
+        defaultHead: 'Helmet_Space_01',
+        accessories: ['Helmet_Space_01']
+      },
+      {
+        id: 'spacesuit_male_02',
+        name: 'Space Suit Male 02',
+        category: 'spacesuit',
+        gender: 'male',
+        description: 'Male space suit variant with different helmet and mask.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_SpaceSuit_Male_02',
+        meshes: ['SM_Chr_ScifiWorlds_SpaceSuit_Male_02', 'SM_Chr_Attach_Helmet_Space_02', 'SM_Chr_Attach_Helmet_Space_02_Glass', 'SM_Chr_Attach_Hair_Male_04', 'SM_Chr_Attach_Head_Mask_02'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['spacesuit', 'male'],
+        defaultHead: 'Helmet_Space_02',
+        accessories: ['Helmet_Space_02', 'Head_Mask_02']
+      },
+      {
+        id: 'strider_male_01',
+        name: 'Strider (Male)',
+        category: 'scavenger',
+        gender: 'male',
+        description: 'Male strider with gas mask and pouch.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_ScifiWorlds_Strider_Male_01',
+        meshes: ['SM_Chr_ScifiWorlds_Strider_Male_01', 'SM_Chr_Attach_GasMask_Thin_01', 'SM_Chr_Attach_Pouch_05'],
+        material: 'PolygonScifiWorlds_Mat_01_A',
+        tags: ['scavenger', 'male'],
+        defaultHead: 'GasMask_Thin_01',
+        accessories: ['GasMask_Thin_01', 'Pouch_05']
+      }
+    ]
+  }
+};
 
-// Texture palette data
-const palettes = [
-  { id: '01_A', label: '01-A', file: 'Textures/Alts/PolygonSciFiHorror_01_A.png', desc: 'Orange/Grey (Default)' },
-  { id: '01_B', label: '01-B', file: 'Textures/Alts/PolygonSciFiHorror_01_B.png', desc: 'Blue/Grey' },
-  { id: '01_C', label: '01-C', file: 'Textures/Alts/PolygonSciFiHorror_01_C.png', desc: 'Green/Grey' },
-  { id: '02_A', label: '02-A', file: 'Textures/Alts/PolygonSciFiHorror_02_A.png', desc: 'Alt Orange' },
-  { id: '02_B', label: '02-B', file: 'Textures/Alts/PolygonSciFiHorror_02_B.png', desc: 'Alt Blue' },
-  { id: '02_C', label: '02-C', file: 'Textures/Alts/PolygonSciFiHorror_02_C.png', desc: 'Alt Green' },
-  { id: '03_A', label: '03-A', file: 'Textures/Alts/PolygonSciFiHorror_03_A.png', desc: 'Variant 3A' },
-  { id: '03_B', label: '03-B', file: 'Textures/Alts/PolygonSciFiHorror_03_B.png', desc: 'Variant 3B' },
-  { id: '03_C', label: '03-C', file: 'Textures/Alts/PolygonSciFiHorror_03_C.png', desc: 'Variant 3C' },
-  { id: '04_A', label: '04-A', file: 'Textures/Alts/PolygonSciFiHorror_04_A.png', desc: 'Dark Variant A' },
-  { id: '04_B', label: '04-B', file: 'Textures/Alts/PolygonSciFiHorror_04_B.png', desc: 'Dark Variant B' },
-  { id: '04_C', label: '04-C', file: 'Textures/Alts/PolygonSciFiHorror_04_C.png', desc: 'Dark Variant C' },
-];
+// Current asset pack
+let currentPack = 'SciFiHorror';
+let ASSET_BASE = assetPacks[currentPack].basePath;
+let characters = assetPacks[currentPack].characters;
+let palettes = assetPacks[currentPack].palettes;
+let cameraInitialized = false; // Track if camera has been positioned for this pack
 
 // State
 let scene, camera, renderer, controls, currentModel;
@@ -727,10 +1065,11 @@ async function loadCharacter(char) {
   return new Promise((resolve) => {
     loader.load(ASSET_BASE + char.fbx, (fbx) => {
       // Scale down - Synty FBX are typically in cm
-      fbx.scale.setScalar(0.01);
+      const packScale = assetPacks[currentPack].scale || 0.01;
+      fbx.scale.setScalar(packScale);
 
       // If it's the main characters file, we need to show only the relevant meshes
-      if (char.fbx.includes('Characters_01.fbx') || char.fbx.includes('BR_Characters')) {
+      if (char.fbx.includes('Characters_01.fbx') || char.fbx.includes('BR_Characters') || char.fbx.includes('Characters.fbx')) {
         fbx.traverse((child) => {
           if (child.isMesh) {
             const name = child.name;
@@ -767,12 +1106,15 @@ async function loadCharacter(char) {
         }
       });
 
-      if (!visibleBox.isEmpty()) {
+      // Only auto-frame camera on first load for this pack
+      if (!cameraInitialized && !visibleBox.isEmpty()) {
         const vCenter = visibleBox.getCenter(new THREE.Vector3());
         const vSize = visibleBox.getSize(new THREE.Vector3());
         controls.target.copy(vCenter);
         const maxDim = Math.max(vSize.x, vSize.y, vSize.z);
-        camera.position.set(vCenter.x + maxDim * 1.2, vCenter.y + maxDim * 0.3, vCenter.z + maxDim * 1.2);
+        const camDist = assetPacks[currentPack].cameraDistance || 1.2;
+        camera.position.set(vCenter.x + maxDim * camDist, vCenter.y + maxDim * 0.3, vCenter.z + maxDim * camDist);
+        cameraInitialized = true;
       }
 
       controls.update();
@@ -844,7 +1186,8 @@ window.resetCamera = function() {
       const size = box.getSize(new THREE.Vector3());
       controls.target.copy(center);
       const maxDim = Math.max(size.x, size.y, size.z);
-      camera.position.set(center.x + maxDim * 1.2, center.y + maxDim * 0.3, center.z + maxDim * 1.2);
+      const camDist = assetPacks[currentPack].cameraDistance || 1.2;
+      camera.position.set(center.x + maxDim * camDist, center.y + maxDim * 0.3, center.z + maxDim * camDist);
       controls.update();
     }
   }
@@ -976,7 +1319,53 @@ async function selectCharacter(char) {
   await loadCharacter(char);
 }
 
+// Build category filter options
+function buildCategoryFilter() {
+  const select = document.getElementById('categoryFilter');
+  select.innerHTML = '';
+  assetPacks[currentPack].categories.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat.value;
+    option.textContent = cat.label;
+    select.appendChild(option);
+  });
+}
+
+// Switch asset pack
+function switchAssetPack(packName) {
+  currentPack = packName;
+  ASSET_BASE = assetPacks[currentPack].basePath;
+  characters = assetPacks[currentPack].characters;
+  palettes = assetPacks[currentPack].palettes;
+  currentPalette = palettes[0];
+  selectedChar = null;
+  cameraInitialized = false; // Reset so first character in new pack gets proper framing
+
+  // Update UI
+  document.getElementById('packTitle').textContent = assetPacks[currentPack].name;
+  buildCategoryFilter();
+  buildCharList();
+  buildSwatches();
+
+  // Clear viewer
+  if (currentModel) {
+    scene.remove(currentModel);
+    currentModel = null;
+  }
+  document.getElementById('noSelection').style.display = 'flex';
+  document.getElementById('viewerControls').style.display = 'none';
+  document.getElementById('detailPanel').innerHTML = `
+    <div class="no-selection" style="height:100%">
+      <p>Character details will appear here</p>
+    </div>
+  `;
+}
+
 // Event listeners
+document.getElementById('assetPackSelect').addEventListener('change', (e) => {
+  switchAssetPack(e.target.value);
+});
+
 document.getElementById('categoryFilter').addEventListener('change', (e) => {
   buildCharList(e.target.value, document.getElementById('searchInput').value);
 });
@@ -987,6 +1376,7 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 
 // Init
 initViewer();
+buildCategoryFilter();
 buildCharList();
 buildSwatches();
 </script>
