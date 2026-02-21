@@ -104,6 +104,9 @@
   .tag-soldier { background: #2a2a1a; color: #fbbf24; }
   .tag-scavenger { background: #3a2a2a; color: #f97316; }
   .tag-spacesuit { background: #1a2a3a; color: #60a5fa; }
+  .tag-pilot { background: #2a3a2a; color: #86efac; }
+  .tag-mech { background: #3a3a2a; color: #fde047; }
+  .tag-weapon { background: #3a2a3a; color: #d946ef; }
 
   /* Main content */
   .main {
@@ -273,6 +276,7 @@
   <select id="assetPackSelect" style="padding: 8px 12px; background: #1a1a2e; border: 1px solid #e94560; border-radius: 4px; color: #fff; font-size: 14px; cursor: pointer;">
     <option value="SciFiHorror">SciFi Horror</option>
     <option value="SciFiWorld">SciFi World</option>
+    <option value="Mech">Mech</option>
   </select>
 </header>
 
@@ -939,6 +943,179 @@ const assetPacks = {
         tags: ['scavenger', 'male'],
         defaultHead: 'GasMask_Thin_01',
         accessories: ['GasMask_Thin_01', 'Pouch_05']
+      }
+    ]
+  },
+  Mech: {
+    name: 'Mech',
+    basePath: 'synty/Mech/',
+    scale: 0.01,
+    cameraDistance: 3.0,
+    categories: [
+      { value: 'all', label: 'All' },
+      { value: 'pilot', label: 'Pilots' },
+      { value: 'mech', label: 'Mechs' },
+      { value: 'weapon', label: 'Weapons' }
+    ],
+    palettes: [
+      { id: '01_A', label: '01-A', file: 'Textures/Alts/PolygonMech_Texture_01_A.png', desc: 'Default A' },
+      { id: '01_B', label: '01-B', file: 'Textures/Alts/PolygonMech_Texture_01_B.png', desc: 'Variant B' },
+      { id: '01_C', label: '01-C', file: 'Textures/Alts/PolygonMech_Texture_01_C.png', desc: 'Variant C' },
+      { id: '02_A', label: '02-A', file: 'Textures/Alts/PolygonMech_Texture_02_A.png', desc: 'Alt 2A' },
+      { id: '02_B', label: '02-B', file: 'Textures/Alts/PolygonMech_Texture_02_B.png', desc: 'Alt 2B' },
+      { id: '02_C', label: '02-C', file: 'Textures/Alts/PolygonMech_Texture_02_C.png', desc: 'Alt 2C' },
+      { id: '03_A', label: '03-A', file: 'Textures/Alts/PolygonMech_Texture_03_A.png', desc: 'Variant 3A' },
+      { id: '03_B', label: '03-B', file: 'Textures/Alts/PolygonMech_Texture_03_B.png', desc: 'Variant 3B' },
+      { id: '03_C', label: '03-C', file: 'Textures/Alts/PolygonMech_Texture_03_C.png', desc: 'Variant 3C' },
+      { id: '04_A', label: '04-A', file: 'Textures/Alts/PolygonMech_Texture_04_A.png', desc: 'Variant 4A' },
+      { id: '04_B', label: '04-B', file: 'Textures/Alts/PolygonMech_Texture_04_B.png', desc: 'Variant 4B' },
+      { id: '04_C', label: '04-C', file: 'Textures/Alts/PolygonMech_Texture_04_C.png', desc: 'Variant 4C' },
+      { id: '05_A', label: '05-A', file: 'Textures/Alts/PolygonMech_Texture_05_A.png', desc: 'Variant 5A' },
+      { id: '05_B', label: '05-B', file: 'Textures/Alts/PolygonMech_Texture_05_B.png', desc: 'Variant 5B' },
+      { id: '05_C', label: '05-C', file: 'Textures/Alts/PolygonMech_Texture_05_C.png', desc: 'Variant 5C' },
+      { id: '06_A', label: '06-A', file: 'Textures/Alts/PolygonMech_Texture_06_A.png', desc: 'Variant 6A' },
+      { id: '06_B', label: '06-B', file: 'Textures/Alts/PolygonMech_Texture_06_B.png', desc: 'Variant 6B' }
+    ],
+    characters: [
+      {
+        id: 'mech_pilot_female',
+        name: 'Mech Pilot (Female)',
+        category: 'pilot',
+        gender: 'female',
+        description: 'Female mech pilot with helmet and tactical gear.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_MechPilot_Female_01',
+        meshes: ['SM_Chr_MechPilot_Female_01', 'SM_Chr_Attach_Helmet_01', 'SM_Chr_Attach_Pouch_02'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['pilot', 'female'],
+        defaultHead: 'Helmet_01',
+        accessories: ['Helmet_01', 'Pouch_02']
+      },
+      {
+        id: 'mech_pilot_male',
+        name: 'Mech Pilot (Male)',
+        category: 'pilot',
+        gender: 'male',
+        description: 'Male mech pilot with helmet and tactical gear.',
+        fbx: 'FBX/Characters.fbx',
+        meshName: 'SM_Chr_MechPilot_Male_01',
+        meshes: ['SM_Chr_MechPilot_Male_01', 'SM_Chr_Attach_Helmet_01', 'SM_Chr_Attach_Pouch_02'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['pilot', 'male'],
+        defaultHead: 'Helmet_01',
+        accessories: ['Helmet_01', 'Pouch_02']
+      },
+      {
+        id: 'mech_01',
+        name: 'Mech Vehicle',
+        category: 'mech',
+        gender: null,
+        description: 'Full combat mech vehicle with modular components.',
+        fbx: 'FBX/SM_Veh_Mech_01.fbx',
+        meshName: 'SM_Veh_Mech_01',
+        meshes: ['SM_Veh_Mech_01'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['mech'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'weapon_arc_rifle',
+        name: 'Arc Rifle',
+        category: 'weapon',
+        gender: null,
+        description: 'Energy-based arc rifle weapon.',
+        fbx: 'FBX/SM_Wep_ArcRifle_01.fbx',
+        meshName: 'SM_Wep_ArcRifle_01',
+        meshes: ['SM_Wep_ArcRifle_01'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'weapon_assault_rifle',
+        name: 'Assault Rifle',
+        category: 'weapon',
+        gender: null,
+        description: 'Standard assault rifle.',
+        fbx: 'FBX/SM_Wep_AssaultRifle_01.fbx',
+        meshName: 'SM_Wep_AssaultRifle_01',
+        meshes: ['SM_Wep_AssaultRifle_01'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'weapon_gatling_gun',
+        name: 'Gatling Gun',
+        category: 'weapon',
+        gender: null,
+        description: 'Heavy gatling gun.',
+        fbx: 'FBX/SM_Wep_GattlingGun_01.fbx',
+        meshName: 'SM_Wep_GattlingGun_01',
+        meshes: ['SM_Wep_GattlingGun_01'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'weapon_hammer_01',
+        name: 'Hammer 01',
+        category: 'weapon',
+        gender: null,
+        description: 'Melee hammer weapon.',
+        fbx: 'FBX/SM_Wep_Hammer_01.fbx',
+        meshName: 'SM_Wep_Hammer_01',
+        meshes: ['SM_Wep_Hammer_01'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'weapon_hammer_02',
+        name: 'Hammer 02',
+        category: 'weapon',
+        gender: null,
+        description: 'Melee hammer weapon variant.',
+        fbx: 'FBX/SM_Wep_Hammer_02.fbx',
+        meshName: 'SM_Wep_Hammer_02',
+        meshes: ['SM_Wep_Hammer_02'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'weapon_hand_cannon',
+        name: 'Hand Cannon',
+        category: 'weapon',
+        gender: null,
+        description: 'Powerful hand cannon sidearm.',
+        fbx: 'FBX/SM_Wep_HandCannon_01.fbx',
+        meshName: 'SM_Wep_HandCannon_01',
+        meshes: ['SM_Wep_HandCannon_01'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'weapon_katana',
+        name: 'Katana',
+        category: 'weapon',
+        gender: null,
+        description: 'Melee katana blade.',
+        fbx: 'FBX/SM_Wep_Katana_01.fbx',
+        meshName: 'SM_Wep_Katana_01',
+        meshes: ['SM_Wep_Katana_01'],
+        material: 'PolygonMech_Mat_01_A',
+        tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
       }
     ]
   }
