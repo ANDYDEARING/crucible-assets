@@ -107,6 +107,9 @@
   .tag-pilot { background: #2a3a2a; color: #86efac; }
   .tag-mech { background: #3a3a2a; color: #fde047; }
   .tag-weapon { background: #3a2a3a; color: #d946ef; }
+  .tag-zombie { background: #2a3a2a; color: #84cc16; }
+  .tag-survivor { background: #3a2a1a; color: #fdba74; }
+  .tag-military { background: #1a2a2a; color: #22d3ee; }
 
   /* Main content */
   .main {
@@ -277,6 +280,7 @@
     <option value="SciFiHorror">SciFi Horror</option>
     <option value="SciFiWorld">SciFi World</option>
     <option value="Mech">Mech</option>
+    <option value="Apocalypse">Apocalypse</option>
   </select>
 </header>
 
@@ -1114,6 +1118,425 @@ const assetPacks = {
         meshes: ['SM_Wep_Katana_01'],
         material: 'PolygonMech_Mat_01_A',
         tags: ['weapon'],
+        defaultHead: null,
+        accessories: []
+      }
+    ]
+  },
+  Apocalypse: {
+    name: 'Apocalypse',
+    basePath: 'synty/Apocalyse/',
+    scale: 0.01,
+    cameraDistance: 1.5,
+    categories: [
+      { value: 'all', label: 'All' },
+      { value: 'survivor', label: 'Survivors' },
+      { value: 'military', label: 'Military' },
+      { value: 'zombie', label: 'Zombies' },
+      { value: 'civilian', label: 'Civilians' }
+    ],
+    palettes: [
+      { id: '01_A', label: '01-A', file: 'Textures/PolygonApocalypse_Texture_01_A.png', desc: 'Default A' },
+      { id: '01_B', label: '01-B', file: 'Textures/Alts/PolygonApocalypse_Texture_01_B.png', desc: 'Variant B' },
+      { id: '01_C', label: '01-C', file: 'Textures/Alts/PolygonApocalypse_Texture_01_C.png', desc: 'Variant C' },
+      { id: '02_A', label: '02-A', file: 'Textures/PolygonApocalypse_Texture_02_A.png', desc: 'Alt 2A' },
+      { id: '02_B', label: '02-B', file: 'Textures/Alts/PolygonApocalypse_Texture_02_B.png', desc: 'Alt 2B' },
+      { id: '02_C', label: '02-C', file: 'Textures/Alts/PolygonApocalypse_Texture_02_C.png', desc: 'Alt 2C' },
+      { id: '03_A', label: '03-A', file: 'Textures/PolygonApocalypse_Texture_03_A.png', desc: 'Variant 3A' },
+      { id: '03_B', label: '03-B', file: 'Textures/Alts/PolygonApocalypse_Texture_03_B.png', desc: 'Variant 3B' },
+      { id: '03_C', label: '03-C', file: 'Textures/Alts/PolygonApocalypse_Texture_03_C.png', desc: 'Variant 3C' },
+      { id: '04_A', label: '04-A', file: 'Textures/PolygonApocalypse_Texture_04_A.png', desc: 'Variant 4A' },
+      { id: '04_B', label: '04-B', file: 'Textures/Alts/PolygonApocalypse_Texture_04_B.png', desc: 'Variant 4B' },
+      { id: '04_C', label: '04-C', file: 'Textures/Alts/PolygonApocalypse_Texture_04_C.png', desc: 'Variant 4C' }
+    ],
+    characters: [
+      {
+        id: 'biker_male',
+        name: 'Biker (Male)',
+        category: 'survivor',
+        gender: 'male',
+        description: 'Male biker survivor.',
+        fbx: 'Characters/SK_Chr_Biker_Male_01.fbx',
+        meshes: ['SK_Chr_Biker_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'business_male',
+        name: 'Business Man',
+        category: 'civilian',
+        gender: 'male',
+        description: 'Male business survivor.',
+        fbx: 'Characters/SK_Chr_Business_Male_01.fbx',
+        meshes: ['SK_Chr_Business_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'cool_female',
+        name: 'Cool (Female)',
+        category: 'survivor',
+        gender: 'female',
+        description: 'Cool female survivor.',
+        fbx: 'Characters/SK_Chr_Cool_Female_01.fbx',
+        meshes: ['SK_Chr_Cool_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'cool_male',
+        name: 'Cool (Male)',
+        category: 'survivor',
+        gender: 'male',
+        description: 'Cool male survivor.',
+        fbx: 'Characters/SK_Chr_Cool_Male_01.fbx',
+        meshes: ['SK_Chr_Cool_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'criminal_male',
+        name: 'Criminal (Male)',
+        category: 'survivor',
+        gender: 'male',
+        description: 'Male criminal survivor.',
+        fbx: 'Characters/SK_Chr_Criminal_Male_01.fbx',
+        meshes: ['SK_Chr_Criminal_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'eastern_female',
+        name: 'Eastern (Female)',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female eastern civilian.',
+        fbx: 'Characters/SK_Chr_Eastern_Female_01.fbx',
+        meshes: ['SK_Chr_Eastern_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'emo_female',
+        name: 'Emo (Female)',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female emo civilian.',
+        fbx: 'Characters/SK_Chr_Emo_Female_01.fbx',
+        meshes: ['SK_Chr_Emo_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'hazmat_male',
+        name: 'Hazmat (Male)',
+        category: 'military',
+        gender: 'male',
+        description: 'Male hazmat suit.',
+        fbx: 'Characters/SK_Chr_Hazmat_Male_01.fbx',
+        meshes: ['SK_Chr_Hazmat_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['military', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'homeless_male',
+        name: 'Homeless (Male)',
+        category: 'civilian',
+        gender: 'male',
+        description: 'Male homeless civilian.',
+        fbx: 'Characters/SK_Chr_Homeless_Male_01.fbx',
+        meshes: ['SK_Chr_Homeless_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'hunter_male',
+        name: 'Hunter (Male)',
+        category: 'survivor',
+        gender: 'male',
+        description: 'Male hunter survivor.',
+        fbx: 'Characters/SK_Chr_Hunter_Male_01.fbx',
+        meshes: ['SK_Chr_Hunter_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'islander_male',
+        name: 'Islander (Male)',
+        category: 'civilian',
+        gender: 'male',
+        description: 'Male islander civilian.',
+        fbx: 'Characters/SK_Chr_Islander_Male_01.fbx',
+        meshes: ['SK_Chr_Islander_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mechanic_female',
+        name: 'Mechanic (Female)',
+        category: 'survivor',
+        gender: 'female',
+        description: 'Female mechanic survivor.',
+        fbx: 'Characters/SK_Chr_Mechanic_Female_01.fbx',
+        meshes: ['SK_Chr_Mechanic_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'nerd_female',
+        name: 'Nerd (Female)',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female nerd civilian.',
+        fbx: 'Characters/SK_Chr_Nerd_Female_01.fbx',
+        meshes: ['SK_Chr_Nerd_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'nun_female',
+        name: 'Nun (Female)',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female nun civilian.',
+        fbx: 'Characters/SK_Chr_Nun_Female_01.fbx',
+        meshes: ['SK_Chr_Nun_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'patient_female',
+        name: 'Patient (Female)',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female patient civilian.',
+        fbx: 'Characters/SK_Chr_Patient_Female_01.fbx',
+        meshes: ['SK_Chr_Patient_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'press_male',
+        name: 'Press (Male)',
+        category: 'civilian',
+        gender: 'male',
+        description: 'Male press/journalist.',
+        fbx: 'Characters/SK_Chr_Press_Male_01.fbx',
+        meshes: ['SK_Chr_Press_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'punk_female',
+        name: 'Punk (Female)',
+        category: 'survivor',
+        gender: 'female',
+        description: 'Female punk survivor.',
+        fbx: 'Characters/SK_Chr_Punk_Female_01.fbx',
+        meshes: ['SK_Chr_Punk_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'riotcop_male',
+        name: 'Riot Cop (Male)',
+        category: 'military',
+        gender: 'male',
+        description: 'Male riot police.',
+        fbx: 'Characters/SK_Chr_RiotCop_Male_01.fbx',
+        meshes: ['SK_Chr_RiotCop_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['military', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'scout_female',
+        name: 'Scout (Female)',
+        category: 'survivor',
+        gender: 'female',
+        description: 'Female scout survivor.',
+        fbx: 'Characters/SK_Chr_Scout_Female_01.fbx',
+        meshes: ['SK_Chr_Scout_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'sheriff_male',
+        name: 'Sheriff (Male)',
+        category: 'military',
+        gender: 'male',
+        description: 'Male sheriff.',
+        fbx: 'Characters/SK_Chr_Sheriff_Male_01.fbx',
+        meshes: ['SK_Chr_Sheriff_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['military', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'soldier_female',
+        name: 'Soldier (Female)',
+        category: 'military',
+        gender: 'female',
+        description: 'Female soldier.',
+        fbx: 'Characters/SK_Chr_Soldier_Female_01.fbx',
+        meshes: ['SK_Chr_Soldier_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['military', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'soldier_male',
+        name: 'Soldier (Male)',
+        category: 'military',
+        gender: 'male',
+        description: 'Male soldier.',
+        fbx: 'Characters/SK_Chr_Soldier_Male_01.fbx',
+        meshes: ['SK_Chr_Soldier_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['military', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'teen_female',
+        name: 'Teen (Female)',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female teen civilian.',
+        fbx: 'Characters/SK_Chr_Teen_Female_01.fbx',
+        meshes: ['SK_Chr_Teen_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'teen_male',
+        name: 'Teen (Male)',
+        category: 'civilian',
+        gender: 'male',
+        description: 'Male teen civilian.',
+        fbx: 'Characters/SK_Chr_Teen_Male_01.fbx',
+        meshes: ['SK_Chr_Teen_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'waitress_female',
+        name: 'Waitress (Female)',
+        category: 'civilian',
+        gender: 'female',
+        description: 'Female waitress civilian.',
+        fbx: 'Characters/SK_Chr_Waitress_Female_01.fbx',
+        meshes: ['SK_Chr_Waitress_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['civilian', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'wanderer_male',
+        name: 'Wanderer (Male)',
+        category: 'survivor',
+        gender: 'male',
+        description: 'Male wanderer survivor.',
+        fbx: 'Characters/SK_Chr_Wanderer_Male_01.fbx',
+        meshes: ['SK_Chr_Wanderer_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['survivor', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'zombie_female_01',
+        name: 'Zombie Female 01',
+        category: 'zombie',
+        gender: 'female',
+        description: 'Female zombie variant 1.',
+        fbx: 'Characters/SK_Chr_Zombie_Female_01.fbx',
+        meshes: ['SK_Chr_Zombie_Female_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['zombie', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'zombie_female_02',
+        name: 'Zombie Female 02',
+        category: 'zombie',
+        gender: 'female',
+        description: 'Female zombie variant 2.',
+        fbx: 'Characters/SK_Chr_Zombie_Female_02.fbx',
+        meshes: ['SK_Chr_Zombie_Female_02'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['zombie', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'zombie_male_01',
+        name: 'Zombie Male 01',
+        category: 'zombie',
+        gender: 'male',
+        description: 'Male zombie variant 1.',
+        fbx: 'Characters/SK_Chr_Zombie_Male_01.fbx',
+        meshes: ['SK_Chr_Zombie_Male_01'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['zombie', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'zombie_male_02',
+        name: 'Zombie Male 02',
+        category: 'zombie',
+        gender: 'male',
+        description: 'Male zombie variant 2.',
+        fbx: 'Characters/SK_Chr_Zombie_Male_02.fbx',
+        meshes: ['SK_Chr_Zombie_Male_02'],
+        material: 'PolygonApocalypse_Material_01_A',
+        tags: ['zombie', 'male'],
         defaultHead: null,
         accessories: []
       }
