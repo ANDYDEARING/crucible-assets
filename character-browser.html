@@ -110,6 +110,10 @@
   .tag-zombie { background: #2a3a2a; color: #84cc16; }
   .tag-survivor { background: #3a2a1a; color: #fdba74; }
   .tag-military { background: #1a2a2a; color: #22d3ee; }
+  .tag-raider { background: #3a1a1a; color: #ef4444; }
+  .tag-mutant { background: #2a3a1a; color: #a3e635; }
+  .tag-villager { background: #2a2a3a; color: #a78bfa; }
+  .tag-tech { background: #1a3a3a; color: #2dd4bf; }
 
   /* Main content */
   .main {
@@ -281,6 +285,7 @@
     <option value="SciFiWorld">SciFi World</option>
     <option value="Mech">Mech</option>
     <option value="Apocalypse">Apocalypse</option>
+    <option value="Wasteland">Wasteland</option>
   </select>
 </header>
 
@@ -1537,6 +1542,358 @@ const assetPacks = {
         meshes: ['SK_Chr_Zombie_Male_02'],
         material: 'PolygonApocalypse_Material_01_A',
         tags: ['zombie', 'male'],
+        defaultHead: null,
+        accessories: []
+      }
+    ]
+  },
+  Wasteland: {
+    name: 'Wasteland',
+    basePath: 'synty/Wasteland/',
+    scale: 0.01,
+    cameraDistance: 1.5,
+    categories: [
+      { value: 'all', label: 'All' },
+      { value: 'raider', label: 'Raiders' },
+      { value: 'mutant', label: 'Mutants' },
+      { value: 'villager', label: 'Villagers' },
+      { value: 'tech', label: 'Tech' }
+    ],
+    palettes: [
+      { id: '01_A', label: '01-A', file: 'Textures/Alts/PolygonApocalypseWasteland_01_A.png', desc: 'Default A' },
+      { id: '01_B', label: '01-B', file: 'Textures/Alts/PolygonApocalypseWasteland_01_B.png', desc: 'Variant B' },
+      { id: '01_C', label: '01-C', file: 'Textures/Alts/PolygonApocalypseWasteland_01_C.png', desc: 'Variant C' },
+      { id: '02_A', label: '02-A', file: 'Textures/Alts/PolygonApocalypseWasteland_02_A.png', desc: 'Alt 2A' },
+      { id: '02_B', label: '02-B', file: 'Textures/Alts/PolygonApocalypseWasteland_02_B.png', desc: 'Alt 2B' },
+      { id: '02_C', label: '02-C', file: 'Textures/Alts/PolygonApocalypseWasteland_02_C.png', desc: 'Alt 2C' },
+      { id: '03_A', label: '03-A', file: 'Textures/Alts/PolygonApocalypseWasteland_03_A.png', desc: 'Variant 3A' },
+      { id: '03_B', label: '03-B', file: 'Textures/Alts/PolygonApocalypseWasteland_03_B.png', desc: 'Variant 3B' },
+      { id: '03_C', label: '03-C', file: 'Textures/Alts/PolygonApocalypseWasteland_03_C.png', desc: 'Variant 3C' },
+      { id: '04_A', label: '04-A', file: 'Textures/Alts/PolygonApocalypseWasteland_04_A.png', desc: 'Variant 4A' },
+      { id: '04_B', label: '04-B', file: 'Textures/Alts/PolygonApocalypseWasteland_04_B.png', desc: 'Variant 4B' },
+      { id: '04_C', label: '04-C', file: 'Textures/Alts/PolygonApocalypseWasteland_04_C.png', desc: 'Variant 4C' },
+      { id: '05_A', label: '05-A', file: 'Textures/Alts/PolygonApocalypseWasteland_05_A.png', desc: 'Variant 5A' }
+    ],
+    characters: [
+      {
+        id: 'berserker_female',
+        name: 'Berserker (Female)',
+        category: 'raider',
+        gender: 'female',
+        description: 'Female berserker raider.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Beserker_Female_01',
+        meshes: ['SM_Chr_Beserker_Female_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'berserker_male',
+        name: 'Berserker (Male)',
+        category: 'raider',
+        gender: 'male',
+        description: 'Male berserker raider.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Beserker_Male_01',
+        meshes: ['SM_Chr_Beserker_Male_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'cultist_male',
+        name: 'Cultist (Male)',
+        category: 'raider',
+        gender: 'male',
+        description: 'Male cultist.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Cultist_Male_01',
+        meshes: ['SM_Chr_Cultist_Male_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'leader_female',
+        name: 'Leader (Female)',
+        category: 'raider',
+        gender: 'female',
+        description: 'Female raider leader.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Leader_Female_01',
+        meshes: ['SM_Chr_Leader_Female_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'leader_male',
+        name: 'Leader (Male)',
+        category: 'raider',
+        gender: 'male',
+        description: 'Male raider leader.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Leader_Male_01',
+        meshes: ['SM_Chr_Leader_Male_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mutant_01',
+        name: 'Mutant 01',
+        category: 'mutant',
+        gender: null,
+        description: 'Mutant variant 1.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Mutant_01',
+        meshes: ['SM_Chr_Mutant_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['mutant'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mutant_02',
+        name: 'Mutant 02',
+        category: 'mutant',
+        gender: null,
+        description: 'Mutant variant 2.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Mutant_02',
+        meshes: ['SM_Chr_Mutant_02'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['mutant'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mutant_03',
+        name: 'Mutant 03',
+        category: 'mutant',
+        gender: null,
+        description: 'Mutant variant 3.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Mutant_03',
+        meshes: ['SM_Chr_Mutant_03'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['mutant'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mutant_04',
+        name: 'Mutant 04',
+        category: 'mutant',
+        gender: null,
+        description: 'Mutant variant 4.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Mutant_04',
+        meshes: ['SM_Chr_Mutant_04'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['mutant'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mutant_giant',
+        name: 'Mutant Giant',
+        category: 'mutant',
+        gender: null,
+        description: 'Giant mutant creature.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Mutant_Giant_01',
+        meshes: ['SM_Chr_Mutant_Giant_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['mutant'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mutant_jar_head',
+        name: 'Mutant Jar Head',
+        category: 'mutant',
+        gender: null,
+        description: 'Mutant with jar on head.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Mutant_Jar_Head_01',
+        meshes: ['SM_Chr_Mutant_Jar_Head_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['mutant'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'mutant_no_face',
+        name: 'Mutant No Face',
+        category: 'mutant',
+        gender: null,
+        description: 'Faceless mutant.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Mutant_No_Face_01',
+        meshes: ['SM_Chr_Mutant_No_Face_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['mutant'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'punk_female',
+        name: 'Punk (Female)',
+        category: 'raider',
+        gender: 'female',
+        description: 'Female punk raider.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Punk_Female_01',
+        meshes: ['SM_Chr_Punk_Female_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'punk_male_01',
+        name: 'Punk Male 01',
+        category: 'raider',
+        gender: 'male',
+        description: 'Male punk raider variant 1.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Punk_Male_01',
+        meshes: ['SM_Chr_Punk_Male_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'punk_male_02',
+        name: 'Punk Male 02',
+        category: 'raider',
+        gender: 'male',
+        description: 'Male punk raider variant 2.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Punk_Male_02',
+        meshes: ['SM_Chr_Punk_Male_02'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['raider', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'scout_female',
+        name: 'Scout (Female)',
+        category: 'villager',
+        gender: 'female',
+        description: 'Female scout.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Scout_Female_01',
+        meshes: ['SM_Chr_Scout_Female_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['villager', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'tech_female',
+        name: 'Tech (Female)',
+        category: 'tech',
+        gender: 'female',
+        description: 'Female tech specialist.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Tech_Female_01',
+        meshes: ['SM_Chr_Tech_Female_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['tech', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'tech_male',
+        name: 'Tech (Male)',
+        category: 'tech',
+        gender: 'male',
+        description: 'Male tech specialist.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Tech_Male_01',
+        meshes: ['SM_Chr_Tech_Male_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['tech', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'villager_female_01',
+        name: 'Villager Female 01',
+        category: 'villager',
+        gender: 'female',
+        description: 'Female villager variant 1.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Villager_Female_01',
+        meshes: ['SM_Chr_Villager_Female_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['villager', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'villager_female_02',
+        name: 'Villager Female 02',
+        category: 'villager',
+        gender: 'female',
+        description: 'Female villager variant 2.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Villager_Female_02',
+        meshes: ['SM_Chr_Villager_Female_02'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['villager', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'villager_female_03',
+        name: 'Villager Female 03',
+        category: 'villager',
+        gender: 'female',
+        description: 'Female villager variant 3.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Villager_Female_03',
+        meshes: ['SM_Chr_Villager_Female_03'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['villager', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'villager_male_01',
+        name: 'Villager Male 01',
+        category: 'villager',
+        gender: 'male',
+        description: 'Male villager variant 1.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Villager_Male_01',
+        meshes: ['SM_Chr_Villager_Male_01'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['villager', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'villager_male_02',
+        name: 'Villager Male 02',
+        category: 'villager',
+        gender: 'male',
+        description: 'Male villager variant 2.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Villager_Male_02',
+        meshes: ['SM_Chr_Villager_Male_02'],
+        material: 'PolygonApocalypseWasteland_01_A',
+        tags: ['villager', 'male'],
         defaultHead: null,
         accessories: []
       }
