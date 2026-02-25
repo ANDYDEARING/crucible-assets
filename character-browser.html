@@ -114,6 +114,10 @@
   .tag-mutant { background: #2a3a1a; color: #a3e635; }
   .tag-villager { background: #2a2a3a; color: #a78bfa; }
   .tag-tech { background: #1a3a3a; color: #2dd4bf; }
+  .tag-undead { background: #2a2a2a; color: #d4d4d4; }
+  .tag-demon { background: #3a1a2a; color: #fb7185; }
+  .tag-hunter { background: #2a3a2a; color: #4ade80; }
+  .tag-dark { background: #1a1a2a; color: #818cf8; }
 
   /* Main content */
   .main {
@@ -286,6 +290,7 @@
     <option value="Mech">Mech</option>
     <option value="Apocalypse">Apocalypse</option>
     <option value="Wasteland">Wasteland</option>
+    <option value="DarkFantasy">Dark Fantasy</option>
   </select>
 </header>
 
@@ -1894,6 +1899,245 @@ const assetPacks = {
         meshes: ['SM_Chr_Villager_Male_02'],
         material: 'PolygonApocalypseWasteland_01_A',
         tags: ['villager', 'male'],
+        defaultHead: null,
+        accessories: []
+      }
+    ]
+  },
+  DarkFantasy: {
+    name: 'Dark Fantasy',
+    basePath: 'synty/DarkFantasy/',
+    scale: 0.01,
+    cameraDistance: 1.5,
+    categories: [
+      { value: 'all', label: 'All' },
+      { value: 'undead', label: 'Undead' },
+      { value: 'demon', label: 'Demons' },
+      { value: 'hunter', label: 'Hunters' },
+      { value: 'dark', label: 'Dark Lords' }
+    ],
+    palettes: [
+      { id: '01_A', label: '01-A', file: 'Textures/Alts/PolygonDarkFantasy_Texture_01_A.png', desc: 'Default A' },
+      { id: '01_B', label: '01-B', file: 'Textures/Alts/PolygonDarkFantasy_Texture_01_B.png', desc: 'Variant B' },
+      { id: '01_C', label: '01-C', file: 'Textures/Alts/PolygonDarkFantasy_Texture_01_C.png', desc: 'Variant C' },
+      { id: '02_A', label: '02-A', file: 'Textures/Alts/PolygonDarkFantasy_Texture_02_A.png', desc: 'Alt 2A' },
+      { id: '02_B', label: '02-B', file: 'Textures/Alts/PolygonDarkFantasy_Texture_02_B.png', desc: 'Alt 2B' },
+      { id: '02_C', label: '02-C', file: 'Textures/Alts/PolygonDarkFantasy_Texture_02_C.png', desc: 'Alt 2C' },
+      { id: '03_A', label: '03-A', file: 'Textures/Alts/PolygonDarkFantasy_Texture_03_A.png', desc: 'Variant 3A' },
+      { id: '03_B', label: '03-B', file: 'Textures/Alts/PolygonDarkFantasy_Texture_03_B.png', desc: 'Variant 3B' },
+      { id: '03_C', label: '03-C', file: 'Textures/Alts/PolygonDarkFantasy_Texture_03_C.png', desc: 'Variant 3C' },
+      { id: '04_A', label: '04-A', file: 'Textures/Alts/PolygonDarkFantasy_Texture_04_A.png', desc: 'Variant 4A' },
+      { id: '04_B', label: '04-B', file: 'Textures/Alts/PolygonDarkFantasy_Texture_04_B.png', desc: 'Variant 4B' },
+      { id: '04_C', label: '04-C', file: 'Textures/Alts/PolygonDarkFantasy_Texture_04_C.png', desc: 'Variant 4C' }
+    ],
+    characters: [
+      {
+        id: 'dark_lord',
+        name: 'Dark Lord',
+        category: 'dark',
+        gender: 'male',
+        description: 'Dark lord with cape and mask.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_DarkLord_Male_01',
+        meshes: ['SM_Chr_DarkLord_Male_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['dark', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'demon_01',
+        name: 'Demon',
+        category: 'demon',
+        gender: null,
+        description: 'Winged demon creature.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Demon_01',
+        meshes: ['SM_Chr_Demon_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['demon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'demon_male',
+        name: 'Demon Male',
+        category: 'demon',
+        gender: 'male',
+        description: 'Male demon with hair.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Demon_Male_01',
+        meshes: ['SM_Chr_Demon_Male_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['demon', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'gargoyle',
+        name: 'Gargoyle',
+        category: 'demon',
+        gender: null,
+        description: 'Stone gargoyle creature.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Gargoyle_01',
+        meshes: ['SM_Chr_Gargoyle_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['demon'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'gravedigger',
+        name: 'Gravedigger',
+        category: 'dark',
+        gender: 'male',
+        description: 'Male gravedigger with hat.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Gravedigger_Male_01',
+        meshes: ['SM_Chr_Gravedigger_Male_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['dark', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'hunter_female',
+        name: 'Hunter (Female)',
+        category: 'hunter',
+        gender: 'female',
+        description: 'Female monster hunter.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Hunter_Female_01',
+        meshes: ['SM_Chr_Hunter_Female_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['hunter', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'hunter_male',
+        name: 'Hunter (Male)',
+        category: 'hunter',
+        gender: 'male',
+        description: 'Male monster hunter.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Hunter_Male_01',
+        meshes: ['SM_Chr_Hunter_Male_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['hunter', 'male'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'plague_doctor',
+        name: 'Plague Doctor',
+        category: 'dark',
+        gender: null,
+        description: 'Plague doctor with mask and cape.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_PlagueDoctor_01',
+        meshes: ['SM_Chr_PlagueDoctor_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['dark'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'priest_female',
+        name: 'Priest (Female)',
+        category: 'dark',
+        gender: 'female',
+        description: 'Female dark priest with fangs.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Priest_Female_01',
+        meshes: ['SM_Chr_Priest_Female_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['dark', 'female'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'skeleton',
+        name: 'Skeleton',
+        category: 'undead',
+        gender: null,
+        description: 'Basic skeleton.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Skeleton_01',
+        meshes: ['SM_Chr_Skeleton_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['undead'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'skeleton_flesh',
+        name: 'Skeleton Flesh',
+        category: 'undead',
+        gender: null,
+        description: 'Skeleton with rotting flesh.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Skeleton_Flesh_01',
+        meshes: ['SM_Chr_Skeleton_Flesh_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['undead'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'skeleton_heavy',
+        name: 'Skeleton Heavy Armor',
+        category: 'undead',
+        gender: null,
+        description: 'Skeleton in heavy armor.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Skeleton_HeavyArmor_01',
+        meshes: ['SM_Chr_Skeleton_HeavyArmor_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['undead'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'skeleton_light',
+        name: 'Skeleton Light Armor',
+        category: 'undead',
+        gender: null,
+        description: 'Skeleton in light armor.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Skeleton_LightArmor_01',
+        meshes: ['SM_Chr_Skeleton_LightArmor_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['undead'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'skeleton_ranger',
+        name: 'Skeleton Ranger',
+        category: 'undead',
+        gender: null,
+        description: 'Skeleton ranger with hood.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Skeleton_Ranger_01',
+        meshes: ['SM_Chr_Skeleton_Ranger_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['undead'],
+        defaultHead: null,
+        accessories: []
+      },
+      {
+        id: 'witch',
+        name: 'Witch',
+        category: 'dark',
+        gender: 'female',
+        description: 'Female witch.',
+        fbx: 'FBX/Characters/Characters.fbx',
+        meshName: 'SM_Chr_Witch_Female_01',
+        meshes: ['SM_Chr_Witch_Female_01'],
+        material: 'PolygonDarkFantasy_01_A',
+        tags: ['dark', 'female'],
         defaultHead: null,
         accessories: []
       }
