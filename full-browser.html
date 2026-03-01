@@ -556,7 +556,14 @@
             const maxDim = Math.max(size.x, size.y, size.z);
             const fov = camera.fov * (Math.PI / 180);
             let cameraDistance = (maxDim / 2) / Math.tan(fov / 2);
-            cameraDistance *= 1.5; // Add some padding
+            cameraDistance *= 1.8; // Add some padding
+
+            // Adjust camera clipping planes based on object size
+            // Near plane should be small enough to not clip close objects
+            // Far plane should be large enough to see the whole object
+            camera.near = Math.max(0.01, maxDim * 0.001);
+            camera.far = Math.max(1000, maxDim * 100);
+            camera.updateProjectionMatrix();
 
             // Position camera at angle
             const angle = Math.PI / 6; // 30 degrees
