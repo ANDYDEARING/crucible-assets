@@ -21,3 +21,7 @@ https://justcreate3d.itch.io/low-poly-sci-fi-characters
 https://www.mixamo.com/#/?page=3&type=Character
 
 https://justcreate3d.studio/product/scifi-characters/
+
+# UNITY Export form Synty
+
+1. Got superimposed models
