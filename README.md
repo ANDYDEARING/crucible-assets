@@ -25,3 +25,7 @@ https://justcreate3d.studio/product/scifi-characters/
 # UNITY Export form Synty
 
 1. Got superimposed models
+
+# Animation Sources
+
+https://quaternius.com/packs/universalanimationlibrary2.html
