@@ -29,3 +29,5 @@ https://justcreate3d.studio/product/scifi-characters/
 # Animation Sources
 
 https://quaternius.com/packs/universalanimationlibrary2.html
+
+https://characters3d.com/
